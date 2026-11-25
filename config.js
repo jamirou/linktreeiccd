@@ -20,8 +20,13 @@ window.ICCD_CONFIG = {
     url: "https://www.youtube.com/watch?v=0W4--vjRado",
   },
 
-  // Enlaces oficiales de redes sociales y contacto
+  // Enlaces oficiales de música, redes sociales y contacto
   enlaces: {
+    spotify: {
+      titulo: "Playlist CAP",
+      subtitulo: "Escúchala en Spotify",
+      url: "https://open.spotify.com/playlist/73iT5nfMp4Gt5wADwXifgo?si=99ac878c7cf741ad",
+    },
     whatsapp: {
       titulo: "WhatsApp",
       subtitulo: "+56 9 8849 6800",
