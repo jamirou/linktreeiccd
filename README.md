@@ -4,6 +4,7 @@ Página tipo Linktree con diseño **multipastel, minimalista con efecto granito 
 
 ## Características
 
+- **Contador global de visitas** en el encabezado (`Eres la visita #...`) que se suma en tiempo real para todos los visitantes.
 - **Última Prédica destacada** con miniatura automática de YouTube.
 - **Mini Test Inteligente («¿Qué palabra necesitas hoy?»)** con 6 opciones por paso, escritura libre con detección en vivo de palabras clave en 8 áreas, respuesta pastoral completa con oración guiada, envío directo a **WhatsApp** y generador de tarjeta **9:16 (1080×1920)** lista para compartir en **Historias de Instagram** etiquetando a `@iglesiainternacionalccd`.
 - **Playlist CAP** en Spotify, WhatsApp, Instagram, Facebook, TikTok y Página Web.

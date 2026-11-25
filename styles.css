@@ -420,6 +420,44 @@ p {
   max-inline-size: 26ch;
 }
 
+/* Pastilla pastel minimalista de recuento de visitas */
+.visit-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-block-size: 2rem;
+  margin-block-start: 0.72rem;
+  padding: 0.28rem 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    130deg var(--in-oklab),
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(235, 244, 255, 0.88) 55%,
+    rgba(247, 236, 255, 0.88) 100%
+  );
+  border: 1px solid rgba(114, 128, 178, 0.3);
+  box-shadow: 0 3px 10px rgba(64, 82, 150, 0.08);
+  font-size: 0.8125rem;
+  color: var(--ink-secondary);
+}
+
+.visit-badge__dot {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: #1b8a52;
+  box-shadow: 0 0 0 3px rgba(27, 138, 82, 0.18);
+  flex: none;
+}
+
+.visit-badge__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink-primary);
+  font-variant-numeric: tabular-nums;
+}
+
 /* ==========================================================================
    Tarjeta destacada: Última Prédica (YouTube)
    ========================================================================== */
@@ -1620,6 +1658,7 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   }
 
   .sheet,
+  .visit-badge,
   .sermon-card,
   .quiz-teaser,
   .link-card,

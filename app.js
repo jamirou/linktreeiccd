@@ -171,6 +171,58 @@
     });
   }
 
+  /**
+   * Contador global de visitas en tiempo real (Abacus API con respaldo local).
+   */
+  async function initVisitCounter() {
+    const textEl = document.getElementById("visit-counter-text");
+    if (!textEl) return;
+
+    const vc = config?.contadorVisitas || {};
+    const namespace = vc.namespace || "jamirou-linktreeiccd";
+    const key = vc.key || "visitas";
+    const prefix = vc.prefijo || "Eres la visita ";
+
+    const renderCount = (value) => {
+      const formatted = new Intl.NumberFormat("es-CL").format(value);
+      textEl.replaceChildren(document.createTextNode(prefix));
+      const strong = document.createElement("strong");
+      strong.className = "visit-badge__num";
+      strong.textContent = `#${formatted}`;
+      textEl.appendChild(strong);
+    };
+
+    try {
+      const endpoint = `https://abacus.jasoncameron.dev/hit/${encodeURIComponent(namespace)}/${encodeURIComponent(key)}`;
+      const response = await fetch(endpoint, { method: "GET", cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const data = await response.json();
+      if (typeof data?.value === "number" && Number.isFinite(data.value)) {
+        try {
+          localStorage.setItem("iccd_last_visit_count", String(data.value));
+        } catch {
+          // Ignorar restricciones de almacenamiento privado
+        }
+        renderCount(data.value);
+        return;
+      }
+      throw new Error("Respuesta inválida del contador");
+    } catch {
+      // Respaldo offline o si un bloqueador impide la llamada externa
+      let fallbackCount = 1;
+      try {
+        const stored = parseInt(localStorage.getItem("iccd_last_visit_count") || "0", 10);
+        fallbackCount = Number.isFinite(stored) && stored > 0 ? stored + 1 : 1;
+        localStorage.setItem("iccd_last_visit_count", String(fallbackCount));
+      } catch {
+        fallbackCount = 1;
+      }
+      renderCount(fallbackCount);
+    }
+  }
+
   applyConfig();
   initShareButton();
+  initVisitCounter();
 })();

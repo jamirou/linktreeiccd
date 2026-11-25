@@ -12,6 +12,13 @@ window.ICCD_CONFIG = {
     subtitulo: "Un lugar de fe, palabra y comunidad",
   },
 
+  // Contador global de visitas (gratuito para GitHub Pages)
+  contadorVisitas: {
+    namespace: "jamirou-linktreeiccd",
+    key: "visitas",
+    prefijo: "Eres la visita ",
+  },
+
   // 👇 ACTUALIZA AQUÍ TU ÚLTIMA PRÉDICA CADA SEMANA
   ultimaPredica: {
     etiqueta: "YouTube · Último mensaje",
