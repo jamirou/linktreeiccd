@@ -5,7 +5,7 @@ Página tipo Linktree con diseño **multipastel, minimalista con efecto granito 
 ## Características
 
 - **Última Prédica destacada** con miniatura automática de YouTube.
-- **Mini Test Interactivo ("¿Qué palabra necesitas hoy?")** de 4 preguntas que entrega un versículo personalizado y envía el resultado directo al **WhatsApp** de la iglesia.
+- **Mini Test Inteligente («¿Qué palabra necesitas hoy?»)** con 6 opciones por paso, escritura libre con detección en vivo de palabras clave en 8 áreas, respuesta pastoral completa con oración guiada, envío directo a **WhatsApp** y generador de tarjeta **9:16 (1080×1920)** lista para compartir en **Historias de Instagram** etiquetando a `@iglesiainternacionalccd`.
 - **Playlist CAP** en Spotify, WhatsApp, Instagram, Facebook, TikTok y Página Web.
 - **Botón nativo de compartir** y diseño responsivo accesible (WCAG AA).
 

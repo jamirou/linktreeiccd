@@ -150,7 +150,7 @@ img {
   overflow-wrap: anywhere;
 }
 
-:where(button, input) {
+:where(button, input, textarea) {
   font: inherit;
   color: inherit;
 }
@@ -180,7 +180,7 @@ p {
 }
 
 /* Indicador de foco accesible de alto contraste */
-:where(a:any-link, button, input):focus-visible {
+:where(a:any-link, button, input, textarea):focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
@@ -1120,9 +1120,16 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   font-size: 1.05rem;
 }
 
-/* Paso 4: nota opcional + acciones */
-.quiz-note-wrap {
-  margin-block-start: 0.9rem;
+/* Paso 4: campos inteligentes, textarea autoajustable y chips rápidos */
+.quiz-helper {
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+  margin-block-end: 0.9rem;
+  line-height: 1.45;
+}
+
+.quiz-field {
+  margin-block-end: 0.85rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -1134,15 +1141,86 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   color: var(--ink-secondary);
 }
 
-.quiz-note-input {
-  inline-size: 100%;
-  min-block-size: 2.85rem;
-  padding: 0.6rem 0.85rem;
+.quiz-note-input,
+.quiz-note-textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
   border-radius: 0.9rem;
   border: 1px solid rgba(104, 118, 168, 0.34);
   background: rgba(255, 255, 255, 0.95);
   color: var(--ink-primary);
-  font-size: 0.92rem;
+  font-size: 0.93rem;
+  line-height: 1.45;
+}
+
+.quiz-note-input {
+  min-block-size: 2.85rem;
+}
+
+.quiz-note-textarea {
+  /* Autoajuste vertical moderno manteniendo ancho estable */
+  field-sizing: content;
+  height: auto;
+  min-block-size: 4lh;
+  max-block-size: 9lh;
+  resize: vertical;
+}
+
+.quiz-detected-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.38rem;
+  min-block-size: 0;
+  margin-block-start: 0.25rem;
+}
+
+.quiz-detected-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #5d2696;
+}
+
+.quiz-detected-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.16rem 0.55rem;
+  border-radius: 999px;
+  background: #f1e6ff;
+  border: 1px solid rgba(124, 75, 196, 0.28);
+  color: #4f1f85;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.quiz-chips-heading {
+  margin-block-end: 0.45rem;
+}
+
+.quiz-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.quiz-chip-btn {
+  min-block-size: 2.3rem;
+  padding: 0.38rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(114, 128, 178, 0.32);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink-primary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.quiz-chip-btn:hover,
+.quiz-chip-btn[aria-pressed="true"] {
+  background: #f1e8ff;
+  border-color: #6b2fa8;
+  color: #4c1d82;
 }
 
 .quiz-nav-row {
@@ -1158,8 +1236,8 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-block-size: 2.9rem;
-  padding: 0.65rem 1.1rem;
+  min-block-size: 2.95rem;
+  padding: 0.65rem 1.05rem;
   border-radius: 0.95rem;
   border: 1px solid transparent;
   font-family: var(--font-display);
@@ -1172,8 +1250,13 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
     box-shadow 180ms ease;
 }
 
+.quiz-btn:disabled {
+  opacity: 0.72;
+  cursor: wait;
+}
+
 .quiz-btn--ghost {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.85);
   border-color: var(--border-card);
   color: var(--ink-secondary);
 }
@@ -1194,11 +1277,11 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   background: #1f3599;
 }
 
-/* Tarjeta postal de resultado con granito pastel */
+/* Tarjeta postal de resultado completa con granito pastel */
 .quiz-result-card {
   position: relative;
   isolation: isolate;
-  padding: 1.15rem 1.1rem;
+  padding: 1.2rem 1.12rem;
   border-radius: 1.25rem;
   border: 1px solid rgba(128, 108, 184, 0.3);
   background: linear-gradient(
@@ -1229,7 +1312,7 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   gap: 0.35rem;
   padding: 0.22rem 0.65rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   color: #5d2696;
   font-size: 0.76rem;
   font-weight: 700;
@@ -1238,7 +1321,7 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
 
 .quiz-result-card__title {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.24rem;
   font-weight: 700;
   color: var(--ink-primary);
   margin-block-end: 0.55rem;
@@ -1246,10 +1329,10 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
 
 .quiz-result-card__verse {
   margin: 0 0 0.45rem;
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   font-style: italic;
   color: var(--ink-primary);
-  line-height: 1.5;
+  line-height: 1.52;
 }
 
 .quiz-result-card__ref {
@@ -1257,19 +1340,84 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   font-size: 0.82rem;
   font-weight: 700;
   color: #1d3aa6;
-  margin-block-end: 0.75rem;
+  margin-block-end: 0.8rem;
 }
 
 .quiz-result-card__reflection {
-  font-size: 0.87rem;
+  font-size: 0.89rem;
+  color: var(--ink-primary);
+  line-height: 1.52;
+  margin-block-end: 0.65rem;
+}
+
+.quiz-insight-box,
+.quiz-prayer-box {
+  margin-block-start: 0.75rem;
+  padding: 0.78rem 0.88rem;
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(124, 108, 178, 0.22);
+}
+
+.quiz-insight-box__title,
+.quiz-prayer-box__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #5d2696;
+  margin-block-end: 0.25rem;
+}
+
+.quiz-insight-box__text,
+.quiz-prayer-box__text {
+  font-size: 0.85rem;
   color: var(--ink-secondary);
-  line-height: 1.45;
+  line-height: 1.48;
+}
+
+.quiz-prayer-box__text {
+  font-style: italic;
+}
+
+.quiz-rec-link {
+  display: inline-block;
+  margin-block-start: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .quiz-actions {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+}
+
+.quiz-btn--instagram {
+  inline-size: 100%;
+  background: linear-gradient(
+    130deg var(--in-oklab),
+    #a1266e 0%,
+    #b82a59 52%,
+    #bf4c2e 100%
+  );
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(168, 38, 102, 0.28);
+}
+
+.quiz-btn--instagram:hover {
+  filter: brightness(0.95);
+}
+
+.quiz-btn--instagram svg,
+.quiz-btn--whatsapp svg {
+  inline-size: 1.2rem;
+  block-size: 1.2rem;
+  flex: none;
 }
 
 .quiz-btn--whatsapp {
@@ -1283,15 +1431,24 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   background: #0f6435;
 }
 
-.quiz-btn--whatsapp svg {
-  inline-size: 1.2rem;
-  block-size: 1.2rem;
-}
-
 .quiz-actions__secondary {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.55rem;
+}
+
+.quiz-ig-tip {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-secondary);
+  margin-block-start: 0.15rem;
+}
+
+.quiz-ig-tip a {
+  font-weight: 700;
+  color: #a82063;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -1471,7 +1628,10 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   .sermon-card__play,
   dialog.quiz-dialog,
   .quiz-option,
+  .quiz-chip-btn,
   .quiz-result-card,
+  .quiz-insight-box,
+  .quiz-prayer-box,
   .quiz-btn {
     background: Canvas;
     color: CanvasText;
@@ -1484,7 +1644,7 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
     color: LinkText;
   }
 
-  :where(a:any-link, button, input):focus-visible {
+  :where(a:any-link, button, input, textarea):focus-visible {
     outline: 3px solid Highlight;
     outline-offset: 3px;
   }
