@@ -668,13 +668,32 @@
   function initSmartQuiz() {
     const openBtn = document.getElementById("open-quiz-btn");
     const closeBtn = document.getElementById("close-quiz-btn");
+    const backToHubBtn = document.getElementById("playground-back-btn");
     const dialog = document.getElementById("soul-quiz");
+    const eyebrowEl = document.getElementById("quiz-dialog-eyebrow");
+    const titleEl = document.getElementById("quiz-dialog-title");
     const stage = document.getElementById("quiz-stage");
     const progressWrap = document.getElementById("quiz-progress-wrap");
     const progressFill = document.getElementById("quiz-progress-fill");
     const progressLabel = document.getElementById("quiz-progress-label");
 
     if (!openBtn || !dialog || !stage) return;
+
+    function setHeader(eyebrow, title, showBack) {
+      if (eyebrowEl) eyebrowEl.textContent = eyebrow;
+      if (titleEl) titleEl.textContent = title;
+      if (backToHubBtn) backToHubBtn.hidden = !showBack;
+    }
+
+    function setProgress(current, total) {
+      if (progressWrap) progressWrap.hidden = false;
+      if (progressFill) progressFill.style.inlineSize = `${(current / total) * 100}%`;
+      if (progressLabel) progressLabel.textContent = `Paso ${current} de ${total}`;
+    }
+
+    function hideProgress() {
+      if (progressWrap) progressWrap.hidden = true;
+    }
 
     const state = {
       stepIndex: 0,
@@ -690,7 +709,69 @@
       state.selectedChip = "";
       state.customNote = "";
       state.userName = "";
+      setHeader("Brújula del Alma · ICCD", "¿Qué palabra necesitas hoy?", true);
       renderStep();
+    }
+
+    function renderPlaygroundHome() {
+      hideProgress();
+      setHeader("Playground · ICCD", "Elige una experiencia", false);
+
+      stage.replaceChildren();
+
+      const intro = document.createElement("p");
+      intro.className = "quiz-helper";
+      intro.textContent = "Dos experiencias interactivas pensadas para inspirarte, compartir en tus historias y conectar con la comunidad.";
+
+      const cards = document.createElement("div");
+      cards.className = "playground-grid";
+
+      // Opción 1: ¿Qué palabra necesitas hoy?
+      const wordCard = document.createElement("button");
+      wordCard.type = "button";
+      wordCard.id = "pg-word-btn";
+      wordCard.className = "playground-card playground-card--word";
+      wordCard.innerHTML = `
+        <span class="playground-card__emoji" aria-hidden="true">✨</span>
+        <span class="playground-card__body">
+          <span class="playground-card__tag">Reflexión + Historia IG</span>
+          <span class="playground-card__title">¿Qué palabra necesitas hoy?</span>
+          <span class="playground-card__desc">Responde o escribe cómo te sientes y recibe una palabra personalizada + oración y envío a WhatsApp.</span>
+        </span>
+      `;
+      wordCard.addEventListener("click", () => {
+        resetQuiz();
+      });
+
+      // Opción 2: ¿Qué personaje de la Biblia eres?
+      const charCard = document.createElement("button");
+      charCard.type = "button";
+      charCard.id = "pg-char-btn";
+      charCard.className = "playground-card playground-card--char";
+      charCard.innerHTML = `
+        <span class="playground-card__emoji" aria-hidden="true">🎮</span>
+        <span class="playground-card__body">
+          <span class="playground-card__tag">Nuevo · Con Avatar 3D</span>
+          <span class="playground-card__title">¿Qué personaje de la Biblia eres?</span>
+          <span class="playground-card__desc">7 preguntas entretenidas sobre la Biblia y tu día a día para descubrir tu personaje con avatar animado.</span>
+        </span>
+      `;
+      charCard.addEventListener("click", () => {
+        if (window.ICCD_CHARACTER_GAME?.start) {
+          window.ICCD_CHARACTER_GAME.start({
+            stage,
+            dialog,
+            setHeader,
+            setProgress,
+            hideProgress,
+            goHome: renderPlaygroundHome,
+          });
+        }
+      });
+
+      cards.append(wordCard, charCard);
+      stage.append(intro, cards);
+      dialog.scrollTop = 0;
     }
 
     function renderStep() {
@@ -1099,9 +1180,15 @@
     }
 
     openBtn.addEventListener("click", () => {
-      resetQuiz();
+      renderPlaygroundHome();
       dialog.showModal();
     });
+
+    if (backToHubBtn) {
+      backToHubBtn.addEventListener("click", () => {
+        renderPlaygroundHome();
+      });
+    }
 
     if (closeBtn) {
       closeBtn.addEventListener("click", () => {

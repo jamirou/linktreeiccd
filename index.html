@@ -127,9 +127,9 @@
           </a>
         </section>
 
-        <!-- Experiencia interactiva original: Mini Test + Resultado a WhatsApp -->
-        <section class="quiz-teaser-section" aria-labelledby="heading-test">
-          <h2 id="heading-test" class="visually-hidden">Mini test interactivo</h2>
+        <!-- Sección interactiva: Playground ICCD (2 experiencias) -->
+        <section class="quiz-teaser-section" aria-labelledby="heading-playground">
+          <h2 id="heading-playground" class="visually-hidden">Playground interactivo</h2>
           <button
             type="button"
             class="quiz-teaser"
@@ -137,14 +137,17 @@
           >
             <span class="quiz-teaser__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/>
-                <path d="M19 3v3M20.5 4.5h-3M5 17v2.5M6.25 18.25h-2.5"/>
+                <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"/>
+                <path d="M6.5 12h4"/>
+                <path d="M8.5 10v4"/>
+                <circle cx="15.2" cy="10.8" r="0.9" fill="currentColor" stroke="none"/>
+                <circle cx="17.6" cy="13.2" r="0.9" fill="currentColor" stroke="none"/>
               </svg>
             </span>
             <span class="quiz-teaser__content">
-              <span class="quiz-teaser__badge">Interactivo · Historia IG &amp; WhatsApp</span>
-              <span class="quiz-teaser__title">¿Qué palabra necesitas hoy?</span>
-              <span class="quiz-teaser__desc">Responde o escríbenos y recibe una palabra personalizada</span>
+              <span class="quiz-teaser__badge">Playground · 2 experiencias</span>
+              <span class="quiz-teaser__title">Playground ICCD</span>
+              <span class="quiz-teaser__desc">¿Qué palabra necesitas hoy? · ¿Qué personaje bíblico eres?</span>
             </span>
             <span class="link-arrow quiz-teaser__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -330,19 +333,25 @@
     </div>
   </div>
 
-  <!-- Modal nativo del Mini Test Interactivo -->
+  <!-- Modal nativo del Playground ICCD -->
   <dialog id="soul-quiz" class="quiz-dialog" closedby="any" aria-labelledby="quiz-dialog-title">
     <div class="quiz-dialog__inner">
       <div class="quiz-dialog__header">
         <div class="quiz-dialog__header-meta">
-          <span class="quiz-dialog__eyebrow">Brújula del Alma · ICCD</span>
-          <h1 id="quiz-dialog-title" class="quiz-dialog__title">¿Qué palabra necesitas hoy?</h1>
+          <button type="button" class="playground-back-btn" id="playground-back-btn" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+            <span>Playground</span>
+          </button>
+          <span class="quiz-dialog__eyebrow" id="quiz-dialog-eyebrow">Playground · ICCD</span>
+          <h1 id="quiz-dialog-title" class="quiz-dialog__title">Elige una experiencia</h1>
         </div>
         <button
           type="button"
           class="quiz-close-btn"
           id="close-quiz-btn"
-          aria-label="Cerrar mini test"
+          aria-label="Cerrar Playground"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 6 6 18"/>
@@ -352,14 +361,14 @@
       </div>
 
       <!-- Barra de progreso -->
-      <div class="quiz-progress" id="quiz-progress-wrap" aria-hidden="true">
+      <div class="quiz-progress" id="quiz-progress-wrap" aria-hidden="true" hidden>
         <div class="quiz-progress__track">
           <div class="quiz-progress__fill" id="quiz-progress-fill"></div>
         </div>
         <span class="quiz-progress__label" id="quiz-progress-label">Paso 1 de 4</span>
       </div>
 
-      <!-- Contenedor dinámico de preguntas o resultado -->
+      <!-- Contenedor dinámico del hub, preguntas o resultado -->
       <div id="quiz-stage" class="quiz-stage"></div>
     </div>
   </dialog>
@@ -369,6 +378,7 @@
 
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="characters.js" defer></script>
   <script src="quiz.js" defer></script>
 </body>
 </html>

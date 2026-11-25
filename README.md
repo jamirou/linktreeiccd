@@ -6,7 +6,9 @@ Página tipo Linktree con diseño **multipastel, minimalista con efecto granito 
 
 - **Contador global de visitas** en el encabezado (`Eres la visita #...`) que se suma en tiempo real para todos los visitantes.
 - **Última Prédica destacada** con miniatura automática de YouTube.
-- **Mini Test Inteligente («¿Qué palabra necesitas hoy?»)** con 6 opciones por paso, escritura libre con detección en vivo de palabras clave en 8 áreas, respuesta pastoral completa con oración guiada, envío directo a **WhatsApp** y generador de tarjeta **9:16 (1080×1920)** lista para compartir en **Historias de Instagram** etiquetando a `@iglesiainternacionalccd`.
+- **Playground ICCD** con dos experiencias interactivas:
+  - **«¿Qué palabra necesitas hoy?»**: 6 opciones por paso, escritura libre con detección en vivo de palabras clave en 8 áreas, respuesta pastoral completa con oración guiada, envío a **WhatsApp** y tarjeta **9:16** para **Historias de Instagram**.
+  - **«¿Qué personaje de la Biblia eres?»**: 7 preguntas entretenidas de la Biblia y la vida diaria (determinado por personalidad entre 8 personajes: David, Ester, Pedro, Rut, Daniel, Débora, Pablo y María de Betania) con **avatares 3D tiernos estilo Wii**, reto semanal, envío a WhatsApp y tarjeta **9:16** con avatar para Historias de Instagram.
 - **Playlist CAP** en Spotify, WhatsApp, Instagram, Facebook, TikTok y Página Web.
 - **Botón nativo de compartir** y diseño responsivo accesible (WCAG AA).
 
