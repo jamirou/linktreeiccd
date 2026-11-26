@@ -27,8 +27,13 @@ window.ICCD_CONFIG = {
     url: "https://www.youtube.com/watch?v=0W4--vjRado",
   },
 
-  // Enlaces oficiales de música, redes sociales y contacto
+  // Enlaces oficiales de formularios, música, redes sociales y contacto
   enlaces: {
+    formularioCap: {
+      titulo: "Formulario CAP",
+      subtitulo: "Completa el formulario aquí",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSfzrTQnq76g_uYKpilOLd6etAZ2OAPBBuz4O44UzTimcNSqQw/viewform",
+    },
     spotify: {
       titulo: "Playlist CAP",
       subtitulo: "Escúchala en Spotify",

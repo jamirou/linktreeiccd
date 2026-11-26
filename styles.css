@@ -51,6 +51,10 @@
   --pastel-yt-bg: #fde7ec;
   --pastel-yt-ink: #b9202e;
 
+  --pastel-form-bg: #ffecdf;
+  --pastel-form-ink: #a6411c;
+  --pastel-form-tint: rgba(255, 241, 230, 0.68);
+
   --pastel-sp-bg: #dcf6e7;
   --pastel-sp-ink: #116d37;
   --pastel-sp-tint: rgba(226, 249, 236, 0.62);
@@ -823,6 +827,15 @@ p {
 }
 
 /* Variantes pastel por plataforma */
+.link-card--form {
+  --icon-bg: var(--pastel-form-bg);
+  --icon-ink: var(--pastel-form-ink);
+  --card-tint: var(--pastel-form-tint);
+}
+.link-card--form:hover {
+  border-color: rgba(166, 65, 28, 0.42);
+}
+
 .link-card--spotify {
   --icon-bg: var(--pastel-sp-bg);
   --icon-ink: var(--pastel-sp-ink);
@@ -1793,7 +1806,8 @@ dialog.quiz-dialog[open]:where(:not([data-closing])) {
   .links-item:nth-child(4) { animation-delay: 255ms; }
   .links-item:nth-child(5) { animation-delay: 295ms; }
   .links-item:nth-child(6) { animation-delay: 335ms; }
-  .signature { animation-delay: 375ms; }
+  .links-item:nth-child(7) { animation-delay: 375ms; }
+  .signature { animation-delay: 415ms; }
 
   .sermon-card,
   .quiz-teaser,
